@@ -48,9 +48,30 @@ const App = () => {
 							</ProtectedRoute>
 						}
 					/>
-					<Route path="/about" element={<About />} />
-					<Route path="/verification/:token" element={<Verification />} />
-					<Route path="/contact" element={<Contact />} />
+					<Route
+						path="/about"
+						element={
+							<ProtectedRoute>
+								<About />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="/verification/:token"
+						element={
+							<PublicRoute>
+								<Verification />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						path="/contact"
+						element={
+							<ProtectedRoute>
+								<Verification />
+							</ProtectedRoute>
+						}
+					/>
 					<Route
 						path="/cart"
 						element={
