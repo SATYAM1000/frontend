@@ -1,0 +1,261 @@
+/** @format */
+.cart-page {
+	width: calc(100% - 16rem);
+	min-height: calc(100vh - 5rem);
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	gap: 2rem;
+	padding: 1rem;
+	background: #ebe9e9;
+	position: relative;
+	overflow: hidden;
+}
+@media (max-width: 768px) {
+	.cart-page {
+		width: calc(100% - 2rem);
+		font-family: "Open Sans", sans-serif;
+	}
+}
+
+.cart-top {
+	width: 100%;
+	font-weight: 500;
+	font-size: 17px;
+	color: var(--lightBlue);
+	font-family: "Open Sans", sans-serif;
+	text-transform: uppercase;
+	color: #000;
+	padding: 0.5rem 0rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.cart-products {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+    overflow: hidden;
+}
+
+/* table-------------------------------------- */
+.table-products {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+    border-collapse: collapse;
+
+}
+
+
+/* ---------row */
+.tr-table {
+	width: 100%;
+}
+
+/* ------------table heading for each column/ */
+.tr-table th {
+	font-weight: 500;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 0.5rem 0rem;
+	width: auto;
+}
+@media (max-width: 768px) {
+	.tr-table th {
+		padding: 0.2rem;
+		width: auto;
+		background: #000;
+	}
+}
+
+
+/* --------------image */
+.cart-product {
+	padding: 0.3rem 0rem;
+	width: 100%;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+	position: relative;
+}
+@media (max-width: 768px) {
+	.cart-product {
+		flex-direction: column;
+	}
+}
+.pro-img {
+	height: 100px;
+	object-fit: contain;
+	/* border-right:1px solid #000; */
+}
+@media(max-width:768px){
+    .pro-img{
+        height: 70px;
+    }
+}
+
+
+
+/* Style for table header */
+.thead {
+	background: var(--lightBlue);
+	color: #fff;
+}
+
+
+/* Style for table rows */
+.tbody {
+	text-align: center;
+}
+
+/* Style for table cells */
+.tr-table th,
+.trr td {
+	border: 1px solid #dddddd;
+	padding: 0.5rem;
+}
+@media(max-width:768px){
+    .tr-table th,
+    .trr td{
+        padding: 0.2rem;
+    }
+
+    
+}
+
+/* Additional styling for the first cell in each row (Product) */
+.th-table-img {
+	text-align: center;
+}
+
+/* Styling for alternating rows, you can customize as needed */
+/* .trr:nth-child(even) {
+    background-color:var(--lightBlue);
+  } */
+
+/* Hover effect for rows */
+.trr:hover {
+	background-color: #e0e0e0;
+}
+
+/* Styling for the Remove button */
+.cart-product button {
+	background-color: #ff6666;
+	color: white;
+	padding: 5px 10px;
+	border: none;
+	cursor: pointer;
+}
+
+.cart-product button:hover {
+	background-color: #ff3333;
+}
+
+.cart-product img {
+	width: 100px;
+	mix-blend-mode: darken;
+}
+
+.remove {
+	cursor: pointer;
+	font-size: 1.7rem;
+	color: #ff6666;
+}
+
+.remove:hover {
+	color: #ff3333;
+}
+
+.pro-title {
+	font-size: 13px;
+	font-weight: 500;
+	color: #000;
+	text-transform: uppercase;
+}
+
+.ii {
+	cursor: pointer;
+	padding: 0.1rem;
+	background: transparent;
+}
+
+.cc {
+	width: inherit;
+	height: inherit;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.remove-i {
+	padding: 0.2rem;
+	background: transparent;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	color: rgba(0, 0, 0, 0.7);
+}
+
+@media(max-width:768px){
+    .thead tr th{
+        font-size: 9px;
+        letter-spacing: 0.5px;
+    }
+    .th-table-remve{
+        display: none;
+    }
+
+    .circle{
+        display: none;
+    }
+	.th-table-price{
+		display: none;
+	}
+
+	.pprice{
+		display: none;
+	}
+}
+
+.total-chekout{
+    width: 100%;
+    padding: 0.5rem;
+    background:transparent;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.empty button{
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    background: var(--lightBlue);
+    color: var(--bg);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.empty button:active{
+    background: var(--darkBlue);
+}
+
+.ttotal{
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    background: var(--lightBlue);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+
+}

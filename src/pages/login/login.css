@@ -1,0 +1,77 @@
+/** @format */
+
+.Login-page {
+	width: 100%;
+	height: calc(100vh - 5rem);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* background: linear-gradient(90deg, rgba(2,0,36,0.1) 0%, rgba(9,9,121,0.1) 35%, rgba(0,212,255,0.2) 100%); */
+	background: var(--bg);
+}
+
+.form-wrapper {
+	width: auto;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	background: transparent;
+}
+
+.span-text {
+	color: var(--lightBlue);
+	font-weight: 600;
+}
+
+.Login-form {
+	width: 17rem;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	background: #f3f1f1;
+	padding: 1.5rem 1.5rem;
+	gap: 1.5rem;
+	border-radius: 8px;
+}
+.inputs-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.inputs-fields input {
+	padding: 0.4rem 0.5rem;
+	outline: none;
+}
+
+.button-field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+}
+
+.button-field button {
+	width: 100%;
+	padding: 0.4rem;
+	color: #fff;
+	border: none;
+	outline: none;
+	background: var(--lightBlue);
+	font-size: 16px;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+}
+
+.already-reg {
+	font-size: 12px;
+}
+
+.already-reg a {
+	text-decoration: none;
+	color: var(--lightBlue);
+}

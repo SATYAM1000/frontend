@@ -1,0 +1,20 @@
+.verify-page {
+	width: calc(100% - 16rem);
+	min-height: calc(100vh - 5rem);
+	background:linear-gradient(0deg, rgba(2,0,36,0.1) 0%, rgba(9,9,121,0.1) 10%, rgba(0,212,255,0.2) 100%);
+	display: flex;
+	align-items: center;
+    justify-content: center;
+	margin: auto;
+    gap: 2rem;
+    padding: 1rem;
+    background: #ebe9e9;
+    position: relative;
+    color: var(--lightBlue);
+}
+@media(max-width:768px){
+    .verify-page{
+        width: calc(100% - 2rem);
+        font-family: 'Open Sans', sans-serif;
+    }
+}

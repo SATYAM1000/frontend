@@ -1,0 +1,131 @@
+.product-card{
+    width: 250px;
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+    background:#fff;
+    border-radius: 5px;
+    gap: 1rem;
+    transition: 0.6s;
+}
+
+.product-card:hover{
+    transform: scale(1.03);
+}
+
+.img-container{
+    width: 230px;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0rem;
+    position: relative;
+}
+.img-container img{
+    width: 100%;
+    mix-blend-mode: darken;
+    object-fit: contain;
+}
+
+.details-container{
+    width: 100%;
+    height: auto;
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    justify-content: space-between;
+    text-align: center;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.p-title{
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    width: 100%;
+    height: 1.5rem;
+    background:transparent;
+}
+
+
+
+.star{
+    color: #818181;
+}
+.star1{
+    color: gold;
+}
+
+
+.price p{
+    font-weight: 600;
+    color:var(--lightBlue);
+
+}
+.cart-btn{
+    width: 100%;
+}
+
+.cart-btn button{
+    width: 100%;
+    padding: 0.5rem 0rem;
+    background: var(--lightBlue);
+    border: none;
+    outline: none;
+    color: #fff;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.cart-btn button:active{
+    background: var(--darkBlue);
+}
+.remove-btn{
+    background:red !important;
+}
+.favourite{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background:rgba(0, 0, 0, 0.5); */
+    opacity: 0;
+    transition: 0.6s;
+    border-radius: 5px;
+    background: #6888c8;
+}
+.favourite:hover{
+    
+    opacity: 0.8;
+}
+.heart{
+    color:rgba(255, 255, 255, 0.8);
+    font-size: 3rem;
+}
+
+.wish{
+    padding: 0.4rem 0.7rem;
+    font-size: 13px;
+    color: #fff;
+    background: red;
+}
