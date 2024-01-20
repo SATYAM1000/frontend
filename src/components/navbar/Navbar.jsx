@@ -43,9 +43,13 @@ const Navbar = () => {
 	}, []);
 
 	const handleBarsClick = () => {
-		console.log("clicked");
 		setShowMenu((prev) => !prev);
 	};
+	const barsClickedOpen=()=>{
+		if(showMenu){
+			setShowMenu(false)
+		}
+	}
 	const handleLogout = () => {
 		localStorage.removeItem("token");
 		dispatch({ type: "EMPTY_CART" })
@@ -61,7 +65,7 @@ const Navbar = () => {
 					<ul>
 						{menuItems.map((item, key) => {
 							return (
-								<li key={key}>
+								<li key={key} onClick={barsClickedOpen}>
 									<Link
 										className={location.pathname === item.path ? "active" : ""}
 										to={item.path}>
