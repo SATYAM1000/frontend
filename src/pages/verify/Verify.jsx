@@ -19,14 +19,16 @@ const Verify = () => {
 					"https://fakeapi-lete.onrender.com/api/users/user",
 					{ headers }
 				);
+        console.log(response.data);
 				if (response.status === 200) {
+          console.log(response.data.user.verified);
 					if (response.data.user.verified) {
 						navigate("/");
 					} else {
 						toast.error("Please verify your email");
 					}
 				}
-        
+
 			} catch (error) {
 				console.error(error);
 				const errorMsg =
