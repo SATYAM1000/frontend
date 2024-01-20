@@ -64,14 +64,7 @@ const App = () => {
 							</PublicRoute>
 						}
 					/>
-					<Route
-						path="/contact"
-						element={
-							<ProtectedRoute>
-								<Verification />
-							</ProtectedRoute>
-						}
-					/>
+					<Route path="/contact" element={<Verification />} />
 					<Route
 						path="/cart"
 						element={
