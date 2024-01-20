@@ -38,7 +38,6 @@ const Register = () => {
 			setLoading(false);
 			if (response.status === 201) {
 				toast.success(response.data.msg);
-				localStorage.setItem("token", response.data.token);
 				setUser({
 					username: "",
 					email: "",
