@@ -19,7 +19,7 @@ const Verification = () => {
 		const verify = async () => {
 			try {
 				const response = await axios.post(
-					`http://localhost:5000/api/users/verify/${token}`
+					`https://fakeapi-lete.onrender.com/api/users/verify/${token}`
 				);
         if(response.status === 200){
           toast.success(response.data.msg);
