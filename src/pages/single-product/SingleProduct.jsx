@@ -10,11 +10,21 @@ import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Card from "../../components/card/Card";
 import { useAppContext } from "../../context/Context";
-import placeholder from "../../assets/placeholder.jpg";
+import placeholder1 from "../../assets/placeholder.jpg";
+import placeholder2 from "../../assets/placeholder2.png";
+import placeholder3 from "../../assets/placeholder3.png";
+import placeholder4 from "../../assets/placeholder4.png";
 const SingleProduct = () => {
 	const [singleProduct, setSingleProduct] = useState({});
 	const [ratingCount, setRatingCount] = useState(0);
 	const { loading, setLoading, allProducts } = useAppContext();
+	const [imageURL, setImageURL] = useState(placeholder1);
+	const [allURLs, setAllURLs] = useState({
+		placeholder1: placeholder1,
+		placeholder2: placeholder2,
+		placeholder3: placeholder3,
+		placeholder4: placeholder4,
+	});
 	const { id } = useParams();
 	let allStars = new Array(5).fill(0);
 	const {
@@ -30,7 +40,7 @@ const SingleProduct = () => {
 				);
 				setLoading(false);
 				setSingleProduct(response.data);
-				console.log("response.data", response.data);
+				setImageURL(response.data.image);
 				setRatingCount(Math.round(response.data.rating.rate));
 			} catch (error) {
 				setLoading(false);
@@ -41,8 +51,11 @@ const SingleProduct = () => {
 		getSingleProductData();
 	}, [id]);
 
+	useEffect(() => {
+		console.log("allURLS : ", allURLs);
+	}, [allURLs]);
+
 	const returnStar = () => {
-		console.log("rat", ratingCount);
 		if (ratingCount > 0) {
 			setRatingCount(ratingCount - 1);
 			return <LiaStarSolid className="sstar" key={Math.random()} />;
@@ -59,6 +72,15 @@ const SingleProduct = () => {
 	const removeProductFromCart = () => {
 		dispatch({ type: "REMOVE_FROM_CART", payload: singleProduct });
 		toast.error("Product removed from cart");
+	};
+
+	const changeImage = (e) => {
+		const image = e.target.src;
+		const altImage = e.target.alt;
+		const oldURL = imageURL;
+		setImageURL(image);
+		setAllURLs((prev) => ({ ...prev, [altImage]: oldURL }));
+		setImageURL(image);
 	};
 
 	return (
@@ -78,7 +100,7 @@ const SingleProduct = () => {
 					<div className="new-single-product">
 						<div className="top-div">
 							<div className="image-box">
-								<img src={singleProduct.image} alt={singleProduct.title} />
+								<img src={imageURL} alt={singleProduct.title} />
 							</div>
 							<div className="text-box">
 								<h3 className="pp-title">{singleProduct.title}</h3>
@@ -112,16 +134,32 @@ const SingleProduct = () => {
 						</div>
 						<div className="bottom-div">
 							<div className="img1">
-								<img src={placeholder} alt="" />
+								<img
+									src={allURLs.placeholder1}
+									alt="placeholder1"
+									onClick={changeImage}
+								/>
 							</div>
 							<div className="img2">
-								<img src={placeholder} alt="" />
+								<img
+									src={allURLs.placeholder2}
+									alt="placeholder2"
+									onClick={changeImage}
+								/>
 							</div>
 							<div className="img3">
-								<img src={placeholder} alt="" />
+								<img
+									src={allURLs.placeholder3}
+									alt="placeholder3"
+									onClick={changeImage}
+								/>
 							</div>
 							<div className="img3">
-								<img src={placeholder} alt="" />
+								<img
+									src={allURLs.placeholder4}
+									alt="placeholder4"
+									onClick={changeImage}
+								/>
 							</div>
 						</div>
 					</div>
