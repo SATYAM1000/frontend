@@ -59,6 +59,18 @@
 	padding: 0.5rem 0rem 1.5rem 0rem;
 	overflow-y: hidden;
 }
+.single-products-container::-webkit-scrollbar {
+	height: 8px !important;
+}
+
+.single-products-container::-webkit-scrollbar-thumb {
+	background-color: var(--lightBlue);
+}
+
+.single-products-container::-webkit-scrollbar-track {
+	background-color: #f1f1f1;
+}
+
 @media (max-width: 1024px) {
 	.single-product-page {
 		width: calc(100% - 2rem);
