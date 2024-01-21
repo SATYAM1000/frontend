@@ -17,6 +17,10 @@ const SingleProduct = () => {
 	const { loading, setLoading, allProducts } = useAppContext();
 	const { id } = useParams();
 	let allStars = new Array(5).fill(0);
+	const {
+		state: { cart },
+		dispatch,
+	} = useAppContext();
 	useEffect(() => {
 		const getSingleProductData = async () => {
 			try {
@@ -45,6 +49,16 @@ const SingleProduct = () => {
 		} else {
 			return <LiaStarSolid className="sstar" key={Math.random()} />;
 		}
+	};
+
+	const addProductToCart = () => {
+		dispatch({ type: "ADD_TO_CART", payload: singleProduct });
+		toast.success("Product added to cart");
+	};
+
+	const removeProductFromCart = () => {
+		dispatch({ type: "REMOVE_FROM_CART", payload: singleProduct });
+		toast.error("Product removed from cart");
 	};
 
 	return (
@@ -82,10 +96,16 @@ const SingleProduct = () => {
 									</div>
 								</div>
 
-								<div className="my-cart-btn">
-									<FaShoppingCart className="cart-icon" />
-									<p>Add to cart</p>
-								</div>
+								{cart.some((p) => p.id === singleProduct.id) ? (
+									<div className="my-cart-btn remove-btn" onClick={removeProductFromCart}>
+										<p>Remove from cart</p>
+									</div>
+								) : (
+									<div className="my-cart-btn" onClick={addProductToCart}>
+										<FaShoppingCart className="cart-icon" />
+										<p>Add to cart</p>
+									</div>
+								)}
 							</div>
 						</div>
 						<div className="bottom-div">
