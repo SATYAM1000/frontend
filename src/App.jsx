@@ -64,7 +64,9 @@ const App = () => {
 							</PublicRoute>
 						}
 					/>
-					<Route path="/contact" element={<Contact />} />
+					<Route path="/contact" element={<ProtectedRoute>
+								<Contact />
+							</ProtectedRoute>} />
 					<Route
 						path="/cart"
 						element={
