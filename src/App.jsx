@@ -64,7 +64,7 @@ const App = () => {
 							</PublicRoute>
 						}
 					/>
-					<Route path="/contact" element={<Verification />} />
+					<Route path="/contact" element={<Contact />} />
 					<Route
 						path="/cart"
 						element={
