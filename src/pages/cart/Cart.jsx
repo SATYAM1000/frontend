@@ -92,8 +92,8 @@ const Cart = () => {
 							</button>
 						</div>
 						<div className="ttotal">
-							<p>Total</p>
-							<p>{total}</p>
+							<p>Total </p>
+							<p>${total}</p>
 						</div>
 					</div>
 				</>

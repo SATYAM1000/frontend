@@ -35,18 +35,73 @@
 .filter-container {
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
-	cursor: pointer;
+	gap: 2rem;
 	color: var(--lightBlue);
-	text-transform: uppercase;
-	padding: 0.5rem 1.5rem;
-	border: 1px solid var(--lightBlue);
 	transition: 0.6s;
+	padding: 0rem 0.5rem;
+}
+@media (max-width: 768px) {
+	.filter-container {
+		gap: 1rem;
+	}
 }
 
-.filter-container:hover {
-	background: var(--lightBlue);
-	color: var(--bg);
+.search-icon-for-desktop,
+.search-icon-for-mobile, .filter-icon {
+	color: #909090;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+
+.search-icon-for-mobile {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.search-icon-for-desktop {
+		display: none;
+	}
+	.search-icon-for-mobile {
+		display: block;
+	}
+
+	.close{
+		display: none;
+	}
+}
+
+.search, .filter {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: #fff;
+	padding: 0.4rem 0.5rem;
+	border-radius: 4px;
+}
+
+
+.search-input {
+	width: 110px;
+	border: none;
+	outline: none;
+	background: transparent;
+	transition: all 0.3s ease;
+}
+
+@media(max-width: 768px){
+	.search-input{
+		width: 0px;
+		transition: all 0.3s ease;
+	}
+	.open{
+		width: 110px;
+	}
+}
+
+.search-input::placeholder {
+	color: #909090;
+	letter-spacing: 0.5px;
+	font-size: 14px;
 }
 
 .home-page h2 {
@@ -70,11 +125,12 @@
 	flex-wrap: wrap;
 }
 
-@media(max-width:768px){
-	.products-container{
+@media (max-width: 768px) {
+	.products-container {
 		gap: 2.5rem;
 	}
 }
+
 .loader {
 	position: absolute;
 	top: 0;
