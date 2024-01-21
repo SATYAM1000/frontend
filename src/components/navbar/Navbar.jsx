@@ -91,10 +91,10 @@ const Navbar = () => {
 						{localStorage.getItem("token") === null ? (
 							<>
 								<Link to="/login">
-									<button className="login-btn">Login</button>
+									<button className="login-btn" onClick={barsClickedOpen}>Login</button>
 								</Link>
 								<Link to="/register">
-									<button className="register-btn">Register</button>
+									<button className="register-btn" onClick={barsClickedOpen}>Register</button>
 								</Link>
 							</>
 						) : (
