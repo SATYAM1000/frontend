@@ -73,6 +73,7 @@
 .search, .filter {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.5rem;
 	background: #fff;
 	padding: 0.6rem 0.5rem;
@@ -89,6 +90,9 @@
 	background: transparent;
 	transition: all 0.3s ease;
 }
+.open{
+	display: none;
+}
 
 @media(max-width: 768px){
 	.search-input{
@@ -96,6 +100,7 @@
 		transition: all 0.3s ease;
 	}
 	.open{
+		display: block;
 		width: 150px;
 	}
 }
