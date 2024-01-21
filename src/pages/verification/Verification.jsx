@@ -42,7 +42,7 @@ const Verification = () => {
 	return (
 		<div className="verification-page">
 			<h5>Verifying your email...</h5>
-			<div className="loader">
+			<div className="new-loader">
 				<ClipLoader
 					color="#3e5a94"
 					loading={true}
