@@ -15,25 +15,34 @@ const Verification = () => {
 		navigate("/login");
 	}
 	useEffect(() => {
-    console.log("token is", token);
+		console.log("token is", token);
 		const verify = async () => {
 			try {
 				const response = await axios.post(
 					`https://fakeapi-lete.onrender.com/api/users/verify/${token}`
 				);
-        if(response.status === 200){
-          toast.success(response.data.msg);
-          navigate("/login");
-        }
+
+				if (response.status === 200) {
+					toast.success(response.data.msg);
+					navigate("/login");
+				}
 			} catch (error) {
 				console.error("Error while verifying user", error);
-        toast.error(error.response.data.msg);
+				if(error.response.data.msg==="User is already verified"){
+					navigate("/login");
+				}else{
+					toast.error(error.response.data.msg);
+				}
 			}
 		};
 		verify();
 	}, [token, navigate]);
 
-	return <div className="verification-page"></div>;
+	return (
+		<div className="verification-page">
+			<h1>Verifying your email...</h1>
+		</div>
+	);
 };
 
 export default Verification;
