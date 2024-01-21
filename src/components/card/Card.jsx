@@ -3,6 +3,7 @@
 import "./card.css";
 import { LiaStarSolid } from "react-icons/lia";
 import { useAppContext } from "../../context/Context";
+import toast from "react-hot-toast";
 
 const Card = ({ product }) => {
 	const {
@@ -15,12 +16,21 @@ const Card = ({ product }) => {
 	const returnStar = () => {
 		if (ratingCount > 0) {
 			ratingCount--;
-			return <LiaStarSolid className="star1" key
-			= {Math.random()} />;
+			return <LiaStarSolid className="star1" key={Math.random()} />;
 		} else {
 			ratingCount--;
 			return <LiaStarSolid className="star" key={Math.random()} />;
 		}
+	};
+
+	const addProductToCart = () => {
+		dispatch({ type: "ADD_TO_CART", payload: product });
+		toast.success("Product added to cart");
+	};
+
+	const removeProductFromCart = () => {
+		dispatch({ type: "REMOVE_FROM_CART", payload: product });
+		toast.error("Product removed from cart");
 	};
 	return (
 		<div className="product-card">
@@ -37,20 +47,11 @@ const Card = ({ product }) => {
 				</div>
 				<div className="cart-btn">
 					{cart.some((p) => p.id === product.id) ? (
-						<button
-							onClick={() =>
-								dispatch({ type: "REMOVE_FROM_CART", payload: product })
-							}
-							className="remove-btn">
+						<button onClick={removeProductFromCart} className="remove-btn">
 							REMOVE FROM CART
 						</button>
 					) : (
-						<button
-							onClick={() =>
-								dispatch({ type: "ADD_TO_CART", payload: product })
-							}>
-							ADD TO CART
-						</button>
+						<button onClick={addProductToCart}>ADD TO CART</button>
 					)}
 				</div>
 			</div>
