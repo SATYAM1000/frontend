@@ -22,7 +22,7 @@ body {
 body {
 	background-color: var(--bg);
 }
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
 	display: none;
 }
 html {

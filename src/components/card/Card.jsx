@@ -22,7 +22,6 @@ const Card = ({ product }) => {
 			ratingCount--;
 			return <LiaStarSolid className="star1" key={Math.random()} />;
 		} else {
-			ratingCount--;
 			return <LiaStarSolid className="star" key={Math.random()} />;
 		}
 	};
@@ -39,9 +38,9 @@ const Card = ({ product }) => {
 
 	const goToSingleProduct = () => {
 		navigate(`/product/${product.id}`);
-	}
+	};
 	return (
-		<div className="product-card" >
+		<div className="product-card">
 			<div className="img-container" onClick={goToSingleProduct}>
 				<img src={product.image} alt="" />
 			</div>

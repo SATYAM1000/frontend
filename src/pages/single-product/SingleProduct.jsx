@@ -1,7 +1,9 @@
 /** @format */
 
 import "./singleproduct.css";
+import { FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { LiaStarSolid } from "react-icons/lia";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
@@ -11,8 +13,10 @@ import { useAppContext } from "../../context/Context";
 import placeholder from "../../assets/placeholder.jpg";
 const SingleProduct = () => {
 	const [singleProduct, setSingleProduct] = useState({});
+	const [ratingCount, setRatingCount] = useState(0);
 	const { loading, setLoading, allProducts } = useAppContext();
 	const { id } = useParams();
+	let allStars = new Array(5).fill(0);
 	useEffect(() => {
 		const getSingleProductData = async () => {
 			try {
@@ -22,7 +26,8 @@ const SingleProduct = () => {
 				);
 				setLoading(false);
 				setSingleProduct(response.data);
-				console.log("single product: ", response.data);
+				console.log("response.data", response.data);
+				setRatingCount(Math.round(response.data.rating.rate));
 			} catch (error) {
 				setLoading(false);
 				console.log("Error while fetching data from server", error);
@@ -31,6 +36,17 @@ const SingleProduct = () => {
 		};
 		getSingleProductData();
 	}, [id]);
+
+	const returnStar = () => {
+		console.log("rat", ratingCount);
+		if (ratingCount > 0) {
+			setRatingCount(ratingCount - 1);
+			return <LiaStarSolid className="sstar" key={Math.random()} />;
+		} else {
+			return <LiaStarSolid className="sstar" key={Math.random()} />;
+		}
+	};
+
 	return (
 		<div className="single-product-page">
 			<div className="single-product">
@@ -52,13 +68,23 @@ const SingleProduct = () => {
 							</div>
 							<div className="text-box">
 								<h3 className="pp-title">{singleProduct.title}</h3>
-								<p className="pp-description">{singleProduct.description}</p>
-								<h4>{singleProduct.price}</h4>
-								<div className="quantity-add-cart">
-									<div className="qty"></div>
-									<div className="cart-btn">
-										<button>Add to cart</button>
+								<div className="star-description">
+									<div className="stars">
+										{allStars.map(returnStar)}
+										<div className="review">
+											{singleProduct?.rating?.count} reviews
+										</div>
 									</div>
+									<p className="pp-description">{singleProduct.description}</p>
+									<div className="price-stock">
+										<h4>$&nbsp;{singleProduct.price}</h4>
+										<div className="stock">In Stock</div>
+									</div>
+								</div>
+
+								<div className="my-cart-btn">
+									<FaShoppingCart className="cart-icon" />
+									<p>Add to cart</p>
 								</div>
 							</div>
 						</div>
@@ -67,6 +93,9 @@ const SingleProduct = () => {
 								<img src={placeholder} alt="" />
 							</div>
 							<div className="img2">
+								<img src={placeholder} alt="" />
+							</div>
+							<div className="img3">
 								<img src={placeholder} alt="" />
 							</div>
 							<div className="img3">
