@@ -27,8 +27,23 @@ const Register = () => {
 	};
 
 	const handleFormSubmit = async (event) => {
-		console.log("working")
 		event.preventDefault();
+		if (!user.username || !user.email || !user.password) {
+			return toast.error("Please enter all the fields");
+		}
+		if (user.username.length < 3) {
+			return toast.error("Username should be atleast 3 characters long");
+		}
+		if (user.password.length < 8) {
+			return toast.error("Password should be atleast 8 characters long");
+		}
+		if (!user.email.includes("@")) {
+			return toast.error("Please enter a valid email");
+		}
+		if (!user.email.includes(".com")) {
+			return toast.error("Please enter a valid email");
+		}
+
 		try {
 			setLoading(true);
 			const response = await axios.post(
