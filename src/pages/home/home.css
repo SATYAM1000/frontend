@@ -75,7 +75,7 @@
 	align-items: center;
 	gap: 0.5rem;
 	background: #fff;
-	padding: 0.4rem 0.5rem;
+	padding: 0.6rem 0.5rem;
 	border-radius: 4px;
 }
 
@@ -94,7 +94,7 @@
 		transition: all 0.3s ease;
 	}
 	.open{
-		width: 110px;
+		width: 150px;
 	}
 }
 
