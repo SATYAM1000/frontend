@@ -42,7 +42,7 @@ const Verify = () => {
 		};
 
 		checkVerifiedOrNot();
-	}, []);
+	});
 
 	return (
 		<div className="verify-page">
