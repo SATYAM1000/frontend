@@ -38,6 +38,7 @@ const Register = () => {
 			setLoading(false);
 			if (response.status === 201) {
 				toast.success(response.data.msg);
+				console.log("response.data while resgistering", response.data);
 				localStorage.setItem("verificationtoken", response.data.token);
 				setUser({
 					username: "",
