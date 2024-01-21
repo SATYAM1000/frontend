@@ -28,7 +28,7 @@ const Verify = () => {
 						}
 						navigate("/login");
 					} else {
-						toast.error("Please verify your email");
+						// toast.error("Please verify your email");
 					}
 				}
 			} catch (error) {
