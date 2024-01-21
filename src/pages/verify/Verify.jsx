@@ -20,18 +20,17 @@ const Verify = () => {
 					{ headers }
 				);
 				if (response.status === 200) {
-          console.log(response.data.user.verified);
+					console.log(response.data.user.verified);
 					if (response.data.user.verified) {
-            toast.success("Email verified successfully");
-            if(localStorage.getItem("verificationtoken")){
-              localStorage.removeItem("verificationtoken");
-            }
-						navigate("/");
+						toast.success("Email verified successfully");
+						if (localStorage.getItem("verificationtoken")) {
+							localStorage.removeItem("verificationtoken");
+						}
+						navigate("/login");
 					} else {
 						toast.error("Please verify your email");
 					}
 				}
-
 			} catch (error) {
 				console.error(error);
 				const errorMsg =
