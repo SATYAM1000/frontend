@@ -15,6 +15,7 @@ import PublicRoute from "./components/routes/public-route/PublicRoute";
 import Cart from "./pages/cart/Cart";
 import Verification from "./pages/verification/Verification";
 import Verify from "./pages/verify/Verify";
+import SingleProduct from "./pages/single-product/SingleProduct";
 
 const App = () => {
 	return (
@@ -22,7 +23,14 @@ const App = () => {
 			<BrowserRouter>
 				<Navbar />
 				<Routes>
-					<Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+					<Route
+						path="/"
+						element={
+							<ProtectedRoute>
+								<Home />
+							</ProtectedRoute>
+						}
+					/>
 					<Route
 						path="/login"
 						element={
@@ -64,9 +72,14 @@ const App = () => {
 							</PublicRoute>
 						}
 					/>
-					<Route path="/contact" element={<ProtectedRoute>
+					<Route
+						path="/contact"
+						element={
+							<ProtectedRoute>
 								<Contact />
-							</ProtectedRoute>} />
+							</ProtectedRoute>
+						}
+					/>
 					<Route
 						path="/cart"
 						element={
@@ -81,6 +94,14 @@ const App = () => {
 							<PublicRoute>
 								<Verify />
 							</PublicRoute>
+						}
+					/>
+					<Route
+						path="/product/:id"
+						element={
+							<ProtectedRoute>
+								<SingleProduct />
+							</ProtectedRoute>
 						}
 					/>
 				</Routes>

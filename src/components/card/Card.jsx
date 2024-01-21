@@ -4,8 +4,12 @@ import "./card.css";
 import { LiaStarSolid } from "react-icons/lia";
 import { useAppContext } from "../../context/Context";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import SingleProduct from "../../pages/single-product/SingleProduct";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ product }) => {
+	const navigate = useNavigate();
 	const {
 		state: { cart },
 		dispatch,
@@ -32,13 +36,17 @@ const Card = ({ product }) => {
 		dispatch({ type: "REMOVE_FROM_CART", payload: product });
 		toast.error("Product removed from cart");
 	};
+
+	const goToSingleProduct = () => {
+		navigate(`/product/${product.id}`);
+	}
 	return (
-		<div className="product-card">
-			<div className="img-container">
+		<div className="product-card" >
+			<div className="img-container" onClick={goToSingleProduct}>
 				<img src={product.image} alt="" />
 			</div>
 			<div className="details-container">
-				<div className="details">
+				<div className="details" onClick={goToSingleProduct}>
 					<p className="p-title">{product.title}</p>
 					<div className="ratings">{allStars.map((star) => returnStar())}</div>
 					<div className="price">

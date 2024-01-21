@@ -8,7 +8,7 @@ import { useAppContext } from "../../context/Context";
 import { FaFilter } from "react-icons/fa";
 
 const Home = () => {
-	const { loading, setLoading, state, allProducts } = useAppContext();
+	const { loading, allProducts } = useAppContext();
 
 	return (
 		<div className="home-page">
