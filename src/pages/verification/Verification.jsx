@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 const Verification = () => {
 	const navigate = useNavigate();
@@ -28,9 +29,9 @@ const Verification = () => {
 				}
 			} catch (error) {
 				console.error("Error while verifying user", error);
-				if(error.response.data.msg==="User is already verified"){
+				if (error.response.data.msg === "User is already verified") {
 					navigate("/login");
-				}else{
+				} else {
 					toast.error(error.response.data.msg);
 				}
 			}
@@ -40,7 +41,16 @@ const Verification = () => {
 
 	return (
 		<div className="verification-page">
-			<h1>Verifying your email...</h1>
+			<h5>Verifying your email...</h5>
+			<div className="loader">
+				<ClipLoader
+					color="#3e5a94"
+					loading={true}
+					size={50}
+					aria-label="Loading Spinner"
+					data-testid="loader"
+				/>
+			</div>
 		</div>
 	);
 };
