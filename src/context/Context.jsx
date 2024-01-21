@@ -7,7 +7,7 @@ import {
 	useReducer,
 	useState,
 } from "react";
-import { cartReducer } from "./Reducers";
+import { cartReducer, productReducer } from "./Reducers";
 const AppContext = createContext();
 const AppProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false);
@@ -30,9 +30,16 @@ const AppProvider = ({ children }) => {
 		allProducts: allProducts,
 		cart: [],
 	});
+
+	const [productState, productDispatch] = useReducer(productReducer, {
+		byRating: 0,
+		byPrice: 0,
+		searchQuery: "",
+	});
+
 	return (
 		<AppContext.Provider
-			value={{ loading, setLoading, allProducts, state, dispatch }}>
+			value={{ loading, setLoading, allProducts, state, dispatch, productState, productDispatch }}>
 			{children}
 		</AppContext.Provider>
 	);

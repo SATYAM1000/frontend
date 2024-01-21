@@ -9,11 +9,23 @@ import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 
 const Home = () => {
-	const { loading, allProducts } = useAppContext();
+	const { loading, allProducts, productDispatch, productState } =
+		useAppContext();
+	const { byRating, byPrice, searchQuery } = productState;
+
 	const [open, setOpen] = useState(false);
 	const handleSearchClick = () => {
 		setOpen(!open);
 	};
+
+	const transformProducts = () => {
+		let sortedProducts = allProducts;
+		if(searchQuery){
+			sortedProducts = sortedProducts.filter((product) => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
+		}
+		return sortedProducts;
+
+	}
 
 	return (
 		<div className="home-page">
@@ -22,11 +34,20 @@ const Home = () => {
 				<div className="filter-container">
 					<div className="search">
 						<FiSearch className="search-icon-for-desktop" />
-						<FiSearch className="search-icon-for-mobile" onClick={handleSearchClick} />
+						<FiSearch
+							className="search-icon-for-mobile"
+							onClick={handleSearchClick}
+						/>
 						<input
 							type="text"
 							className={open ? "search-input open" : "search-input"}
 							placeholder="Search"
+							onChange={(e) => {
+								productDispatch({
+									type: "FILTER_BY_SEARCH",
+									payload: e.target.value,
+								});
+							}}
 						/>
 					</div>
 					<div className={open ? "close" : "filter"} title="Filter">
@@ -47,7 +68,7 @@ const Home = () => {
 			) : (
 				<>
 					<div className="products-container">
-						{allProducts.map((product) => {
+						{transformProducts().map((product) => {
 							return <Card product={product} key={product.id} />;
 						})}
 					</div>
