@@ -390,6 +390,10 @@
 	border-radius: 8px;
 }
 
-.sstar {
-	color: gold;
+.gld-star {
+	color:var(--darkBlue);
+}
+
+.black-star{
+	color: #818181;
 }

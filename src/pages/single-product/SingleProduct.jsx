@@ -16,8 +16,10 @@ import placeholder3 from "../../assets/placeholder3.png";
 import placeholder4 from "../../assets/placeholder4.png";
 const SingleProduct = () => {
 	const [singleProduct, setSingleProduct] = useState({});
-	const [ratingCount, setRatingCount] = useState(0);
 	const { loading, setLoading, allProducts } = useAppContext();
+	const [ratingCount, setRatingCount] = useState(
+		singleProduct.rating?.rate || 0
+	);
 
 	const [images, setImages] = useState([
 		placeholder1,
@@ -54,6 +56,10 @@ const SingleProduct = () => {
 		dispatch,
 	} = useAppContext();
 	useEffect(() => {
+		console.log("ratingCount: ", ratingCount);
+	}, [ratingCount]);
+
+	useEffect(() => {
 		const getSingleProductData = async () => {
 			try {
 				setLoading(true);
@@ -70,6 +76,7 @@ const SingleProduct = () => {
 					response.data.image,
 				]);
 				setRatingCount(Math.round(response.data.rating.rate));
+
 				window.scrollTo({ top: 0, behavior: "smooth" });
 			} catch (error) {
 				setLoading(false);
@@ -80,12 +87,13 @@ const SingleProduct = () => {
 		getSingleProductData();
 	}, [id]);
 
-	const returnStar = () => {
-		if (ratingCount > 0) {
-			setRatingCount(ratingCount - 1);
-			return <LiaStarSolid className="sstar" key={Math.random()} />;
+	const returnStar = (index) => {
+		const renderStar = index < Math.round(singleProduct.rating.rate);
+
+		if (renderStar) {
+			return <LiaStarSolid className="gold-star" key={index} />;
 		} else {
-			return <LiaStarSolid className="sstar" key={Math.random()} />;
+			return <LiaStarSolid className="black-star" key={index} />;
 		}
 	};
 
@@ -149,7 +157,9 @@ const SingleProduct = () => {
 								<h3 className="pp-title">{singleProduct.title}</h3>
 								<div className="star-description">
 									<div className="stars">
-										{allStars.map(returnStar)}
+										{ratingCount
+											? allStars.map((_, index) => returnStar(index))
+											: null}
 										<div className="review">
 											{singleProduct?.rating?.count} reviews
 										</div>
