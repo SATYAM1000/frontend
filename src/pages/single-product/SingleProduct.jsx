@@ -173,7 +173,7 @@ const SingleProduct = () => {
 
 								{cart.some((p) => p.id === singleProduct.id) ? (
 									<div
-										className="my-cart-btn remove-btn"
+										className="my-cart-btn remove-btn1"
 										onClick={removeProductFromCart}>
 										<p>Remove from cart</p>
 									</div>
