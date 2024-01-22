@@ -41,6 +41,12 @@ const SingleProduct = () => {
 				setLoading(false);
 				setSingleProduct(response.data);
 				setImageURL(response.data.image);
+				setAllURLs({
+					placeholder1: placeholder1,
+					placeholder2: placeholder2,
+					placeholder3: placeholder3,
+					placeholder4: placeholder4,
+				});
 				setRatingCount(Math.round(response.data.rating.rate));
 			} catch (error) {
 				setLoading(false);

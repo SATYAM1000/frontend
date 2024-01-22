@@ -20,12 +20,13 @@ const Home = () => {
 
 	const transformProducts = () => {
 		let sortedProducts = allProducts;
-		if(searchQuery){
-			sortedProducts = sortedProducts.filter((product) => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
+		if (searchQuery) {
+			sortedProducts = sortedProducts.filter((product) =>
+				product.title.toLowerCase().includes(searchQuery.toLowerCase())
+			);
 		}
 		return sortedProducts;
-
-	}
+	};
 
 	return (
 		<div className="home-page">
@@ -55,6 +56,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
+
 			{loading ? (
 				<div className="loader">
 					<ClipLoader
