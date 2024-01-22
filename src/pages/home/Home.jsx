@@ -70,9 +70,15 @@ const Home = () => {
 			) : (
 				<>
 					<div className="products-container">
-						{transformProducts().map((product) => {
-							return <Card product={product} key={product.id} />;
-						})}
+						{transformProducts().length > 0 ? (
+							transformProducts().map((product) => {
+								return <Card product={product} key={product.id} />;
+							})
+						) : (
+							<>
+								<h4 style={{ textAlign: "center" }}>No Matching Products Found</h4>
+							</>
+						)}
 					</div>
 				</>
 			)}
