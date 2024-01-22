@@ -19,12 +19,35 @@ const SingleProduct = () => {
 	const [ratingCount, setRatingCount] = useState(0);
 	const { loading, setLoading, allProducts } = useAppContext();
 	const [imageURL, setImageURL] = useState(placeholder1);
-	const [allURLs, setAllURLs] = useState({
-		placeholder1: placeholder1,
-		placeholder2: placeholder2,
-		placeholder3: placeholder3,
-		placeholder4: placeholder4,
-	});
+
+	const [images, setImages] = useState([
+		placeholder1,
+		placeholder2,
+		placeholder3,
+		placeholder4,
+		singleProduct.image,
+	]);
+	const handleDragStart = (index) => (e) => {
+		e.dataTransfer.setData("text/plain", index.toString());
+	};
+
+	const handleDrop = (index) => (e) => {
+		e.preventDefault();
+		const draggedIndex = Number(e.dataTransfer.getData("text/plain"));
+		const newImages = [...images];
+
+		// Swap images
+		const temp = newImages[index];
+		newImages[index] = newImages[draggedIndex];
+		newImages[draggedIndex] = temp;
+
+		setImages(newImages);
+	};
+
+	const allowDrop = (e) => {
+		e.preventDefault();
+	};
+
 	const { id } = useParams();
 	let allStars = new Array(5).fill(0);
 	const {
@@ -41,12 +64,14 @@ const SingleProduct = () => {
 				setLoading(false);
 				setSingleProduct(response.data);
 				setImageURL(response.data.image);
-				setAllURLs({
-					placeholder1: placeholder1,
-					placeholder2: placeholder2,
-					placeholder3: placeholder3,
-					placeholder4: placeholder4,
-				});
+
+				setImages([
+					placeholder1,
+					placeholder2,
+					placeholder3,
+					placeholder4,
+					response.data.image,
+				]);
 				setRatingCount(Math.round(response.data.rating.rate));
 			} catch (error) {
 				setLoading(false);
@@ -56,10 +81,6 @@ const SingleProduct = () => {
 		};
 		getSingleProductData();
 	}, [id]);
-
-	useEffect(() => {
-		console.log("allURLS : ", allURLs);
-	}, [allURLs]);
 
 	const returnStar = () => {
 		if (ratingCount > 0) {
@@ -80,13 +101,23 @@ const SingleProduct = () => {
 		toast.error("Product removed from cart");
 	};
 
-	const changeImage = (e) => {
-		const image = e.target.src;
-		const altImage = e.target.alt;
-		const oldURL = imageURL;
-		setImageURL(image);
-		setAllURLs((prev) => ({ ...prev, [altImage]: oldURL }));
-		setImageURL(image);
+	const changeImage = (index) => {
+		const initialImg = images[index];
+		const finalImg = images[4];
+		const img1 = images[0];
+		const img2 = images[1];
+		const img3 = images[2];
+		const img4 = images[3];
+
+		if (index === 0) {
+			setImages([finalImg, img2, img3, img4, initialImg]);
+		} else if (index === 1) {
+			setImages([img1, finalImg, img3, img4, initialImg]);
+		} else if (index === 2) {
+			setImages([img1, img2, finalImg, img4, initialImg]);
+		} else if (index === 3) {
+			setImages([img1, img2, img3, finalImg, initialImg]);
+		}
 	};
 
 	return (
@@ -105,8 +136,16 @@ const SingleProduct = () => {
 				) : (
 					<div className="new-single-product">
 						<div className="top-div">
-							<div className="image-box">
-								<img src={imageURL} alt={singleProduct.title} />
+							<div
+								className="image-box"
+								onDragOver={allowDrop}
+								onDrop={handleDrop(4)}>
+								<img
+									src={images[4]}
+									alt={singleProduct.title}
+									draggable
+									onDragStart={handleDragStart(4)}
+								/>
 							</div>
 							<div className="text-box">
 								<h3 className="pp-title">{singleProduct.title}</h3>
@@ -139,32 +178,52 @@ const SingleProduct = () => {
 							</div>
 						</div>
 						<div className="bottom-div">
-							<div className="img1">
+							<div
+								className="img1"
+								onDragOver={allowDrop}
+								onDrop={handleDrop(0)}>
 								<img
-									src={allURLs.placeholder1}
+									src={images[0]}
 									alt="placeholder1"
-									onClick={changeImage}
+									onClick={() => changeImage(0)}
+									draggable
+									onDragStart={handleDragStart(0)}
 								/>
 							</div>
-							<div className="img2">
+							<div
+								className="img2"
+								onDragOver={allowDrop}
+								onDrop={handleDrop(1)}>
 								<img
-									src={allURLs.placeholder2}
+									src={images[1]}
 									alt="placeholder2"
-									onClick={changeImage}
+									onClick={() => changeImage(1)}
+									draggable
+									onDragStart={handleDragStart(1)}
 								/>
 							</div>
-							<div className="img3">
+							<div
+								className="img3"
+								onDragOver={allowDrop}
+								onDrop={handleDrop(2)}>
 								<img
-									src={allURLs.placeholder3}
+									src={images[2]}
 									alt="placeholder3"
-									onClick={changeImage}
+									onClick={() => changeImage(2)}
+									draggable
+									onDragStart={handleDragStart(2)}
 								/>
 							</div>
-							<div className="img3">
+							<div
+								className="img3"
+								onDragOver={allowDrop}
+								onDrop={handleDrop(3)}>
 								<img
-									src={allURLs.placeholder4}
+									src={images[3]}
 									alt="placeholder4"
-									onClick={changeImage}
+									onClick={() => changeImage(3)}
+									draggable
+									onDragStart={handleDragStart(3)}
 								/>
 							</div>
 						</div>
