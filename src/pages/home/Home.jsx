@@ -11,7 +11,8 @@ import { useRef, useState, useEffect } from "react";
 const Home = () => {
 	const { loading, allProducts, productDispatch, productState } =
 		useAppContext();
-	const { byRating, byPrice, searchQuery } = productState;
+	const { byRating, byPrice,sort, searchQuery } = productState;
+	console.log(byRating, byPrice,sort, searchQuery);
 	const [open, setOpen] = useState(false);
 	const [filterClick, setFilterClick] = useState(false);
 	const handleSearchClick = () => {
@@ -27,10 +28,25 @@ const Home = () => {
 
 	const transformProducts = () => {
 		let sortedProducts = allProducts;
+		if(sort){
+			sortedProducts = sortedProducts.sort((a,b)=>{
+				if(sort === "lowToHigh"){
+					return a.price - b.price
+				}
+				if(sort === "highToLow"){
+					return b.price - a.price
+				}
+			})
+		}
 		if (searchQuery) {
 			sortedProducts = sortedProducts.filter((product) =>
 				product.title.toLowerCase().includes(searchQuery.toLowerCase())
 			);
+		}
+		if(byRating){
+			sortedProducts = sortedProducts.filter((product)=>{
+				return Math.round(product.rating.rate) == byRating	
+			})
 		}
 		return sortedProducts;
 	};
@@ -95,6 +111,7 @@ const Home = () => {
 											payload: "lowToHigh",
 										})
 									}
+									checked={sort==="lowToHigh" ? true : false}
 								/>
 								<label htmlFor="price-low-to-high">Price - Low to High</label>
 							</div>
@@ -109,12 +126,31 @@ const Home = () => {
 											payload: "highToLow",
 										})
 									}
+									checked={sort==="highToLow" ? true : false}
+
 								/>
 								<label htmlFor="price-high-to-low">Price - High to Low</label>
 							</div>
 							<div className="rating-class">
-								<input type="radio" name="price" id="rating" />
-								<label htmlFor="rating">Rating</label>
+								<input
+									type="text"
+									name="price"
+									id="rating"
+									onChange={(e) => {
+										if (e.target.value < 5) {
+											productDispatch({
+												type: "FILTER_BY_RATING",
+												payload: e.target.value,
+											});
+										} else {
+											productDispatch({
+												type: "FILTER_BY_RATING",
+												payload: 5,
+											});
+										}
+									}}
+									placeholder="Filter by Rating"
+								/>
 							</div>
 							<div className="clear-filter">
 								<button
