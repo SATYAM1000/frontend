@@ -147,7 +147,7 @@ const Home = () => {
 											});
 										} else {
 											if (!toastOpen) {
-												toast.error("Rating should be less than 5");
+												toast.error("Maximum Rating is 5");
 												setToastOpen(true);
 											}
 											productDispatch({
