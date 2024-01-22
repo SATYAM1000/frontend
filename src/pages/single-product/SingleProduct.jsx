@@ -18,7 +18,6 @@ const SingleProduct = () => {
 	const [singleProduct, setSingleProduct] = useState({});
 	const [ratingCount, setRatingCount] = useState(0);
 	const { loading, setLoading, allProducts } = useAppContext();
-	const [imageURL, setImageURL] = useState(placeholder1);
 
 	const [images, setImages] = useState([
 		placeholder1,
@@ -63,8 +62,6 @@ const SingleProduct = () => {
 				);
 				setLoading(false);
 				setSingleProduct(response.data);
-				setImageURL(response.data.image);
-
 				setImages([
 					placeholder1,
 					placeholder2,
@@ -73,6 +70,7 @@ const SingleProduct = () => {
 					response.data.image,
 				]);
 				setRatingCount(Math.round(response.data.rating.rate));
+				window.scrollTo({ top: 0, behavior: "smooth" });
 			} catch (error) {
 				setLoading(false);
 				console.log("Error while fetching data from server", error);
