@@ -308,7 +308,7 @@
 	padding: 0rem 1rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
 	.my-cart-btn {
 		width: 100%;
 		padding: 0.8rem;
