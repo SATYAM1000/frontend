@@ -139,7 +139,7 @@ const Home = () => {
 									id="rating"
 									value={byRating}
 									onChange={(e) => {
-										if (e.target.value < 5) {
+										if (e.target.value < 6) {
 											setToastOpen(false);
 											productDispatch({
 												type: "FILTER_BY_RATING",
