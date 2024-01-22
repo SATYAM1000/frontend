@@ -47,7 +47,8 @@
 }
 
 .search-icon-for-desktop,
-.search-icon-for-mobile, .filter-icon {
+.search-icon-for-mobile,
+.filter-icon {
 	color: #909090;
 	font-size: 1.1rem;
 	cursor: pointer;
@@ -65,12 +66,13 @@
 		display: block;
 	}
 
-	.close{
+	.close {
 		display: none;
 	}
 }
 
-.search, .filter {
+.search,
+.filter {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -82,6 +84,9 @@
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
 
+.filter {
+	position: relative;
+}
 
 .search-input {
 	width: 110px;
@@ -90,16 +95,16 @@
 	background: transparent;
 	transition: all 0.3s ease;
 }
-.open{
+.open {
 	display: none;
 }
 
-@media(max-width: 768px){
-	.search-input{
+@media (max-width: 768px) {
+	.search-input {
 		width: 0px;
 		transition: all 0.3s ease;
 	}
-	.open{
+	.open {
 		display: block;
 		width: 150px;
 	}
@@ -148,4 +153,78 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.filter-options {
+	position: absolute;
+	top: 3rem;
+	right: 0;
+	background: var(--bg);
+	border-radius: 4px;
+	z-index: 99;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	width: 13.6rem;
+	height: 0rem;
+	overflow: hidden;
+	transition: 0.3s;
+}
+.open-filter {
+	position: absolute;
+	top: 3rem;
+	right: 0;
+	height: 11rem;
+	background: var(--bg);
+	border-radius: 4px;
+	z-index: 99;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	width: 13.6rem;
+	padding: 0.7rem 0.6rem;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+.price-low-to-high,
+.price-high-to-low,
+.rating-class {
+	padding: 0.3rem 0rem;
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+	font-size: 14px;
+	cursor: pointer;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	color: #707070;
+	letter-spacing: 0.5px;
+}
+
+.price-high-to-low label,
+.price-low-to-high label,
+.rating-class label {
+	cursor: pointer;
+	text-wrap: nowrap;
+}
+
+.clear-filter button {
+	padding: 0.4rem 0.5rem;
+	font-size: 14px;
+	color: #fff;
+	letter-spacing: 0.5px;
+	cursor: pointer;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	transition: 0.3s;
+	width: 100%;
+
+	background: var(--lightBlue);
+	text-wrap: nowrap;
+}
+
+.clear-filter button:active {
+	background: var(--darkBlue);
 }
