@@ -7,12 +7,14 @@ import { useAppContext } from "../../context/Context";
 import { FiFilter } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
 import { useRef, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Home = () => {
 	const { loading, allProducts, productDispatch, productState } =
 		useAppContext();
-	const { byRating, byPrice,sort, searchQuery } = productState;
-	console.log(byRating, byPrice,sort, searchQuery);
+	const { byRating, sort, searchQuery } = productState;
+	const [toastOpen, setToastOpen] = useState(false);
+
 	const [open, setOpen] = useState(false);
 	const [filterClick, setFilterClick] = useState(false);
 	const handleSearchClick = () => {
@@ -28,25 +30,25 @@ const Home = () => {
 
 	const transformProducts = () => {
 		let sortedProducts = allProducts;
-		if(sort){
-			sortedProducts = sortedProducts.sort((a,b)=>{
-				if(sort === "lowToHigh"){
-					return a.price - b.price
+		if (sort) {
+			sortedProducts = sortedProducts.sort((a, b) => {
+				if (sort === "lowToHigh") {
+					return a.price - b.price;
 				}
-				if(sort === "highToLow"){
-					return b.price - a.price
+				if (sort === "highToLow") {
+					return b.price - a.price;
 				}
-			})
+			});
 		}
 		if (searchQuery) {
 			sortedProducts = sortedProducts.filter((product) =>
 				product.title.toLowerCase().includes(searchQuery.toLowerCase())
 			);
 		}
-		if(byRating){
-			sortedProducts = sortedProducts.filter((product)=>{
-				return Math.round(product.rating.rate) == byRating	
-			})
+		if (byRating) {
+			sortedProducts = sortedProducts.filter((product) => {
+				return Math.round(product.rating.rate) == byRating;
+			});
 		}
 		return sortedProducts;
 	};
@@ -111,7 +113,7 @@ const Home = () => {
 											payload: "lowToHigh",
 										})
 									}
-									checked={sort==="lowToHigh" ? true : false}
+									checked={sort === "lowToHigh" ? true : false}
 								/>
 								<label htmlFor="price-low-to-high">Price - Low to High</label>
 							</div>
@@ -126,8 +128,7 @@ const Home = () => {
 											payload: "highToLow",
 										})
 									}
-									checked={sort==="highToLow" ? true : false}
-
+									checked={sort === "highToLow" ? true : false}
 								/>
 								<label htmlFor="price-high-to-low">Price - High to Low</label>
 							</div>
@@ -136,21 +137,27 @@ const Home = () => {
 									type="text"
 									name="price"
 									id="rating"
+									value={byRating}
 									onChange={(e) => {
 										if (e.target.value < 5) {
+											setToastOpen(false);
 											productDispatch({
 												type: "FILTER_BY_RATING",
 												payload: e.target.value,
 											});
 										} else {
+											if (!toastOpen) {
+												toast.error("Rating should be less than 5");
+												setToastOpen(true);
+											}
 											productDispatch({
 												type: "FILTER_BY_RATING",
 												payload: 5,
 											});
 										}
 									}}
-									placeholder="Filter by Rating"
 								/>
+								<label htmlFor="rating">Filter by Rating</label>
 							</div>
 							<div className="clear-filter">
 								<button
