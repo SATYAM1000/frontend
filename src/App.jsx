@@ -45,17 +45,17 @@ const App = () => {
 					<Route
 						path="/products"
 						element={
-							<ProtectedRoute>
+							
 								<Products />
-							</ProtectedRoute>
+							
 						}
 					/>
 					<Route
 						path="/about"
 						element={
-							<ProtectedRoute>
+							
 								<About />
-							</ProtectedRoute>
+							
 						}
 					/>
 					<Route
@@ -69,17 +69,17 @@ const App = () => {
 					<Route
 						path="/contact"
 						element={
-							<ProtectedRoute>
+							
 								<Contact />
-							</ProtectedRoute>
+							
 						}
 					/>
 					<Route
 						path="/cart"
 						element={
-							<ProtectedRoute>
+							
 								<Cart />
-							</ProtectedRoute>
+							
 						}
 					/>
 					<Route
@@ -93,9 +93,9 @@ const App = () => {
 					<Route
 						path="/product/:id"
 						element={
-							<ProtectedRoute>
+							
 								<SingleProduct />
-							</ProtectedRoute>
+							
 						}
 					/>
 				</Routes>
